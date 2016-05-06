@@ -10,14 +10,14 @@ public class GenericLessons implements Expe <String> {
 
     public static void main (String args[]){
 
-        Collection<? extends Shape> c = new ArrayList<Rectangle>();
-        //c.add(new Circle()); // Compile time error
+        Collection<? super Shape> c = new ArrayList();
+        c.add(new Circle());
 
-        List <Shape> shapes=new ArrayList();
-        Circle circle=new Circle();
+        List <? extends Shape> shapes= (List<? extends Shape>) new Canvas().createShapes();//new ArrayList();
+        /*Circle circle=new Circle();
         shapes.add(circle);
         Rectangle rectangle=new Rectangle();
-        shapes.add(rectangle);
+        shapes.add(rectangle);*/
         Canvas canvas=new Canvas();
         canvas.drawAll(shapes);
 
@@ -58,9 +58,19 @@ interface Expe <T>  {
         s.draw(this);
     }
 
-     public void drawAll(List<Shape> shapes) {
+     public void drawAll(List<? extends Shape> shapes) {
          for (Shape s: shapes) {
              s.draw(this);
          }
+     }
+
+
+     public List <? super Shape> createShapes(){
+         List <? super Shape> l=new ArrayList();
+         Rectangle r =new Rectangle();
+         Circle c=new Circle();
+         l.add(c);
+         l.add(r);
+      return l;
      }
 }
