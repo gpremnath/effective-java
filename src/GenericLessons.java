@@ -21,6 +21,12 @@ public class GenericLessons implements Expe <String> {
         Canvas canvas=new Canvas();
         canvas.drawAll(shapes);
 
+        Favourites favourites =new Favourites();
+        favourites.putFavourite(String.class,"test");
+        favourites.putFavourite(Integer.class,1);
+        favourites.putFavourite(Object.class,new Integer(1));
+
+
     }
 
     @Override
